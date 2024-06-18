@@ -1,6 +1,6 @@
 # SISA Custom Instruction Assembler
 
-A simple SISA program to assemble SISA assembly with custom instructions using
+A simple program to assemble SISA assembly with custom instructions using
 the sisa-tools provided by the teachers of PEC.
 
 ## Requierements
