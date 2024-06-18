@@ -63,7 +63,7 @@ movi r0, 0xee
 movhi r0, 0xff
 mvrv v1, r0, 7
 
-addv v2, v0, v1
+subv v2, v0, v1
 
 movi r1, 0x00
 movhi r1, 0x00
