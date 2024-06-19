@@ -68,6 +68,12 @@ for instruction in input_file.readlines():
         case "SHLV":
             instruction_decoded += "1010" + dec_to_hex[int(instruction_splitted[1][1])] + dec_to_hex[int(instruction_splitted[2][1])] + "111" + dec_to_hex[int(instruction_splitted[3][1])]
             decoded = True
+        case "STV":
+            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[2][1])] + dec_to_hex[int(instruction_splitted[1][3])] + "001" + dec_to_hex[int(instruction_splitted[1][0])]
+            decoded = True
+        case "LDV":
+            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[1][1])] + dec_to_hex[int(instruction_splitted[2][3])] + "010" + dec_to_hex[int(instruction_splitted[2][0])]
+            decoded = True
 
     if decoded:
         print(".word 0x" + str(binary_to_hex(instruction_decoded)))
