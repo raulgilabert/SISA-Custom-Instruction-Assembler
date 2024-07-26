@@ -31,10 +31,23 @@ input_file = open(sys.argv[1], "r")
 for instruction in input_file.readlines():
     instruction_splitted = instruction.split(" ")
 
+    instruction_splitted = [e for elem in instruction_splitted for e in elem.split("(")]
+
     instruction_splitted = [elem for elem in instruction_splitted if elem != ""]
     instruction_splitted = [elem.upper() for elem in instruction_splitted]
 
     dec_to_hex = ["000", "001", "010", "011", "100", "101", "110", "111"]
+
+    dec_to_hex_signed = {
+        "0": "000",
+        "1": "001",
+        "2": "010",
+        "3": "011",
+        "-1": "111",
+        "-2": "110",
+        "-3": "101",
+        "-4": "100"
+    }
 
     instruction_decoded = ""
 
@@ -69,16 +82,17 @@ for instruction in input_file.readlines():
             instruction_decoded += "1010" + dec_to_hex[int(instruction_splitted[1][1])] + dec_to_hex[int(instruction_splitted[2][1])] + "111" + dec_to_hex[int(instruction_splitted[3][1])]
             decoded = True
         case "STV":
-            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[2][1])] + dec_to_hex[int(instruction_splitted[1][3])] + "001" + dec_to_hex[int(instruction_splitted[1][0])]
+            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[2][1])] + dec_to_hex[int(instruction_splitted[1][1])] + "001" + dec_to_hex_signed[instruction_splitted[1]]
             decoded = True
         case "LDV":
-            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[1][1])] + dec_to_hex[int(instruction_splitted[2][3])] + "010" + dec_to_hex[int(instruction_splitted[2][0])]
+            instruction_decoded += "1111" + dec_to_hex[int(instruction_splitted[1][1])] + dec_to_hex[int(instruction_splitted[2][1])] + "010" + dec_to_hex_signed[instruction_splitted[2]]
             decoded = True
+    
 
     if decoded:
         print(".word 0x" + str(binary_to_hex(instruction_decoded)))
     else:
-        if instruction[:-1] != "" and instruction[:-1] == "\n":
+        if instruction[-1] != "" and instruction[-1] == "\n":
             print(instruction[:-1])
         else:
             print(instruction)
