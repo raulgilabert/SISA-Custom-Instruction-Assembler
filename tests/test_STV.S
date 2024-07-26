@@ -72,3 +72,4 @@ STV 0(r1), v2
 LDV v2, 0(r1)
 
 halt
+

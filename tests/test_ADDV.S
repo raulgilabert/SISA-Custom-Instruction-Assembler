@@ -74,31 +74,23 @@ st 0(r1), r0
 mvvr r0, v2, 1
 st 2(r1), r0
 
-
 mvvr r0, v2, 2
 st 4(r1), r0
-
 
 mvvr r0, v2, 3
 st 6(r1), r0
 
-
 mvvr r0, v2, 4
 st 8(r1), r0
-
 
 mvvr r0, v2, 5
 st 10(r1), r0
 
-
 mvvr r0, v2, 6
 st 12(r1), r0
-
 
 mvvr r0, v2, 7
 st 14(r1), r0
 
 halt
-
-
 

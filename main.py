@@ -78,5 +78,7 @@ for instruction in input_file.readlines():
     if decoded:
         print(".word 0x" + str(binary_to_hex(instruction_decoded)))
     else:
-        if instruction[:-1] != "":
+        if instruction[:-1] != "" and instruction[:-1] == "\n":
             print(instruction[:-1])
+        else:
+            print(instruction)
